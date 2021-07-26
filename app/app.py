@@ -57,7 +57,7 @@ def form_update_post(oscar_id):
 
 @app.route('/oscars/new', methods=['GET'])
 def form_insert_get():
-    return render_template('new.html', title='New Oscar Form')
+    return render_template('add.html', title='New Oscar Form')
 
 
 @app.route('/oscars/new', methods=['POST'])

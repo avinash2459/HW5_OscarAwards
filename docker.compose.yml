@@ -3,6 +3,7 @@ services:
   app:
     build: ./app
     container_name: "Flask_App"
+    restart: always
     links:
       - db
     ports:

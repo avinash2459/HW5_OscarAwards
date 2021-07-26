@@ -48,7 +48,8 @@ def form_update_post(oscar_id):
     cursor = mysql.get_db().cursor()
     inputData = (request.form.get('actorName'), request.form.get('movieName'), request.form.get('sex'),
                  request.form.get('age'), request.form.get('year'), oscar_id)
-    sql_update_query = """UPDATE tblOscarImport t SET t.actorName = %s, t.movieName = %s, t.age = %s, t.sex =
+    print(inputData)
+    sql_update_query = """UPDATE tblOscarImport t SET t.actorName = %s, t.movieName = %s, t.sex = %s, t.age =
     %s, t.year = %s WHERE t.id = %s """
     cursor.execute(sql_update_query, inputData)
     mysql.get_db().commit()
@@ -84,7 +85,7 @@ def api_browse() -> str:
     cursor = mysql.get_db().cursor()
     cursor.execute('SELECT * FROM tblOscarImport')
     result = cursor.fetchall()
-    json_result = json.dumps(result);
+    json_result = json.dumps(result)
     resp = Response(json_result, status=200, mimetype='application/json')
     return resp
 
@@ -94,7 +95,7 @@ def api_retrieve(oscar_id) -> str:
     cursor = mysql.get_db().cursor()
     cursor.execute('SELECT * FROM tblOscarImport WHERE id=%s', oscar_id)
     result = cursor.fetchall()
-    json_result = json.dumps(result);
+    json_result = json.dumps(result)
     resp = Response(json_result, status=200, mimetype='application/json')
     return resp
 
